@@ -1,72 +1,56 @@
 #include<iostream>
 using namespace std;
 
-class Queue
-{
+class Queue { // A class to represent a queue
 private:
-    int array[MAX_SIZE];  // Array to store queue elements
-    int front;  // Index of front element
-    int rear;   // Index of rear element
-    int count;  // Number of elements in the queue
-
+    int front, rear, currentSize;
+    unsigned capacity;
+    int* array;
 public:
-    // Constructor to initialize queue
-    Queue()
-    {
-        front = 0;
-        rear = MAX_SIZE - 1;
-        count = 0;
+    Queue(int size){// constructor
+        capacity = size;
+        array = new int[capacity];
+        front = -1;
+        rear  = -1;
+        currentSize = 0;
     }
-
-    // Function to check if the queue is empty
-    bool isEmpty()
-    {
-        return (count == 0);
+    void insert(int j){
+        if(currentSize==capacity){cout<<"Queue is full";return;}
+        if(front==-1){front++;rear++;array[front]=j;currentSize++;return;}
+        rear++;
+        array[rear]=j;
+        currentSize++;
     }
-
-    // Function to check if the queue is full
-    bool isFull()
-    {
-        return (count == MAX_SIZE);
+    int remove(){
+        front++;
     }
-
-    // Function to add an element to the queue
-    // It changes rear and count
-    void enqueue(int element)
-    {
-        // Check if the queue is full
-        if (isFull())
-        {
-            cout << "Queue is full" << endl;
-            return;
+    int peek(){//equivalent to accessing first element
+    }
+    bool isEmpty(){
+    }
+    bool isFull(){
+    }
+    int Size(){
+    }
+    void view(){
+        for(int i=front;i<currentSize;i++){
+            cout<<array[i]<<",";
         }
-
-        // Increment rear and add element
-        rear = (rear + 1) % MAX_SIZE;
-        array[rear] = element;
-        count++;
-    }
-
-    // Function to remove an element from the queue
-    // It changes front and count
-    int dequeue()
-    {
-        // Check if the queue is empty
-        if (isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return -1;
-        }
-
-        // Get the element at the front of the queue
-        int element = array[front];
-
-        // Increment front and decrement count
-        front = (front + 1) % MAX_SIZE;
-        count--;
-
-        return element;
     }
 };
 
-int main(){}
+
+int main(){
+    Queue q1(5);
+    q1.insert(4);
+    q1.insert(3);
+    q1.insert(2);
+    q1.insert(1);
+    q1.view();
+    q1.remove();
+    cout<<endl;
+    q1.view();
+    q1.insert(3);
+    q1.insert(2);
+    q1.insert(1);
+}
