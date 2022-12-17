@@ -25,17 +25,16 @@ public:
         front++;
     }
     int peek(){//equivalent to accessing first element
+        return array[front];
     }
     bool isEmpty(){
+        return currentSize==0;
     }
     bool isFull(){
+        return currentSize==capacity;
     }
     int Size(){
-    }
-    void view(){
-        for(int i=front;i<currentSize;i++){
-            cout<<array[i]<<",";
-        }
+        return currentSize;
     }
 };
 
@@ -46,10 +45,8 @@ int main(){
     q1.insert(3);
     q1.insert(2);
     q1.insert(1);
-    q1.view();
     q1.remove();
     cout<<endl;
-    q1.view();
     q1.insert(3);
     q1.insert(2);
     q1.insert(1);
